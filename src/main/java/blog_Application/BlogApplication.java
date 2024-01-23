@@ -27,13 +27,13 @@ public class BlogApplication {
 		
 		role.setRoleid(1);
 		role.setRolename("ROLE_USER");
-	 	roleRepo.saveAndFlush(role);
+	 	roleRepo.save(role);
 	
       Role role1 =new Role();
 		
 		role1.setRoleid(2);
 		role1.setRolename("ROLE_ADMIN"); 
-	 	roleRepo.saveAndFlush(role1);
+	 	roleRepo.save(role1);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

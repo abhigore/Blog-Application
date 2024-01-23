@@ -31,6 +31,9 @@ public class PostDto {
 	@JsonBackReference
 	private List<CommentDto> comments;
 
+	
+	
+	
 	public void setUserDtoId(long userid)
 	{
 		if(this.userdto==null)

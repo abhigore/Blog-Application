@@ -1,0 +1,27 @@
+2024-01-11T14:58:52.482+05:30  INFO 14828 --- [main] blog_Application.BlogApplication         : Starting BlogApplication using Java 19.0.1 with PID 14828 (D:\New folder\Blog_Application\target\classes started by vaibh in D:\New folder\Blog_Application)
+2024-01-11T14:58:52.484+05:30  INFO 14828 --- [main] blog_Application.BlogApplication         : The following 1 profile is active: "dev"
+2024-01-11T14:58:53.222+05:30  INFO 14828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-01-11T14:58:53.285+05:30  INFO 14828 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 5 JPA repository interfaces.
+2024-01-11T14:58:53.747+05:30  INFO 14828 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2024-01-11T14:58:53.757+05:30  INFO 14828 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-01-11T14:58:53.757+05:30  INFO 14828 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-01-11T14:58:53.807+05:30  INFO 14828 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-01-11T14:58:53.808+05:30  INFO 14828 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1275 ms
+2024-01-11T14:58:53.910+05:30  INFO 14828 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-01-11T14:58:53.973+05:30  INFO 14828 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-01-11T14:58:54.004+05:30  INFO 14828 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-01-11T14:58:54.207+05:30  INFO 14828 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-01-11T14:58:54.228+05:30  INFO 14828 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-01-11T14:58:54.499+05:30  INFO 14828 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@53ba25ff
+2024-01-11T14:58:54.501+05:30  INFO 14828 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-01-11T14:58:55.379+05:30  INFO 14828 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-01-11T14:58:55.510+05:30  INFO 14828 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-01-11T14:58:55.687+05:30  INFO 14828 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-01-11T14:58:56.246+05:30  WARN 14828 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-01-11T14:58:56.497+05:30  INFO 14828 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@747fb4b1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6924ff83, org.springframework.security.web.context.SecurityContextHolderFilter@5cdb7b, org.springframework.security.web.header.HeaderWriterFilter@546f0f36, org.springframework.web.filter.CorsFilter@e19908e, org.springframework.security.web.authentication.logout.LogoutFilter@1377b7bf, blog_Application.Security.JWTAuth.JwtAuthenticationFiler@3bfbe2a6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@16b1dee7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@690337df, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5312940c, org.springframework.security.web.session.SessionManagementFilter@1ad4ff2a, org.springframework.security.web.access.ExceptionTranslationFilter@105c253a, org.springframework.security.web.access.intercept.AuthorizationFilter@62dfe32e]
+2024-01-11T14:58:56.723+05:30  INFO 14828 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path ''
+2024-01-11T14:58:56.731+05:30  INFO 14828 --- [main] blog_Application.BlogApplication         : Started BlogApplication in 4.599 seconds (process running for 5.12)
+2024-01-11T15:00:23.662+05:30  INFO 14828 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-01-11T15:00:23.672+05:30  INFO 14828 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-01-11T15:00:23.673+05:30  INFO 14828 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-01-11T15:00:23.681+05:30  INFO 14828 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

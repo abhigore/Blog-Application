@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,8 +43,8 @@ public class PostServiceImpl implements PostService{
 	@Autowired
 	private PostRepo postRepo;
 	
-	@Autowired
-	private ModelMapper mapper;
+	
+	private ModelMapper mapper =new ModelMapper();
 	
 	@Autowired
 	private UserRepo userRepo;
@@ -51,15 +52,18 @@ public class PostServiceImpl implements PostService{
 	@Autowired
 	private CategoryRepo categoryRepo;
 	
+	
+	
  
 	
 	Logger logger = LoggerFactory.getLogger(PostServiceImpl.class);
 	
 	
 	@Override
-	public PostDto CreatePost(PostDto postDto, long userid, long catid ,MultipartFile file) throws IOException {
+	public PostDto CreatePost(PostDto postDto, long userid, long catid ,MultipartFile file) throws IOException
+	{
 		
-		logger.info("enter in postcreate method in postservice class");
+		
 		FileUploading fileUploading = new FileUploading(); 
 		Post post  =postDtoToPost(postDto);
 		
@@ -68,10 +72,11 @@ public class PostServiceImpl implements PostService{
 		
 		Category category =categoryRepo.findByCatid(catid).orElseThrow(()->new ResourceNotFoundException("Category", "id", catid));
 		
-		post.setAddDate(new Date());
-		logger.info("enter in postcreate method in before fileupload");
+		post.setAddDate(new Date(System.currentTimeMillis()));
+		
+		
 		String fileUpload = fileUploading.FileUpload(file);
-		logger.info("enter in postcreate method in after fileupload" + fileUpload);
+	
 		post.setImage(fileUpload);
 		post.setUser(user);
 		post.setCategory(category);
@@ -227,6 +232,9 @@ public class PostServiceImpl implements PostService{
 		 InputStream is = new FileInputStream(image);
 		 return is;
 	}
+	
+	
+	
 
 	
 }

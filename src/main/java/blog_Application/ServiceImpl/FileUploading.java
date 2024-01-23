@@ -26,7 +26,7 @@ public class FileUploading {
 	public FileUploading()throws IOException
 	{
 		  ClassPathResource resource = new ClassPathResource("static/image/");
-		logger.info("UPLOad_Dir is = " + resource.getFile().getAbsolutePath());
+		logger.info("UPLOAD_Dir is = " + resource.getFile().getAbsolutePath());
 		UPLOAD_DIR =resource.getFile().getAbsolutePath();
 		
 		
@@ -38,7 +38,24 @@ public class FileUploading {
 		String name =file.getOriginalFilename();
 	    
 		String randomid =UUID.randomUUID().toString();
-		String filename =randomid.concat(name.substring(name.lastIndexOf(".")));
+		String filename ="";
+		
+		int lastindex =name.lastIndexOf(".");
+		
+		int lastCharIndex =name.length()-1;
+		
+		if(lastindex != -1)
+		{
+		  filename =randomid.concat(name.substring(lastindex));
+		}
+		else
+		{
+			System.out.println("Your name not content dot");
+			
+			filename =randomid.concat(name.substring(lastCharIndex));
+			logger.info("Your name is = " +filename);
+		}
+	
 		
 	   Files.copy(file.getInputStream(),Paths.get(UPLOAD_DIR+File.separator+filename),StandardCopyOption.REPLACE_EXISTING);
 	   

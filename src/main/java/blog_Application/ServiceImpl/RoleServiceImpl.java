@@ -26,6 +26,7 @@ public class RoleServiceImpl implements RoleService{
 	@Autowired
 	private ModelMapper mapper;
 	
+
 	@Autowired
 	private  RoleRepo roleRepo;
 
@@ -37,7 +38,6 @@ public class RoleServiceImpl implements RoleService{
 	@Override
 	public RoleDto roleCreate(RoleDto roleDto ,long userid) {
 	
-		
 		Set<User> users =new HashSet();
 		Set<Role> roles =new HashSet();
 		User user = this.userRepo.findById(userid).orElseThrow(()->new ResourceNotFoundException("User","user id ", userid));

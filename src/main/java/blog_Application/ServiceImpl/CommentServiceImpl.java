@@ -37,11 +37,14 @@ public class CommentServiceImpl  implements CommentService{
 	@Autowired
 	private PostRepo postRepo;
 	
-	@Autowired
-	private ModelMapper mapper;
+	
+	private ModelMapper mapper=new ModelMapper();
     
-	@Autowired
-	private PostServiceImpl postServiceImpl;
+	
+	private PostServiceImpl postServiceImpl =new PostServiceImpl();
+	
+	
+	
 	@Override
 	public CommentDto createComment(CommentDto commentDto, long userid ,long postid) {
 		 Post post = postRepo.findByPostid(postid).orElseThrow(()-> new ResourceNotFoundException("Post","post id ",postid));	

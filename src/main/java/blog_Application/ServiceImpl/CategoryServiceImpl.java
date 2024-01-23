@@ -20,19 +20,27 @@ import blog_Application.Service.CategoryService;
 @Service
 public class CategoryServiceImpl implements CategoryService{
 	
-	@Autowired
+	
 	private CategoryRepo catRepo;
 	
+	private ModelMapper mapper =new ModelMapper();
+	
 	@Autowired
-	private ModelMapper mapper;
+	public CategoryServiceImpl( CategoryRepo catRepo) {
+	   this.catRepo =catRepo;
+	   
+	}
 
 	@Override
 	public CategoryDto create(CategoryDto categoryDto) {
 		
 		Category category =catDtoToCategory(categoryDto);
-		catRepo.save(category);
-		 CategoryDto categoryDto2 = catToCategoryDto(category);
-		 categoryDto2.setCatid(category.getCatid());
+		
+		Category savecat = catRepo.save(category);
+		 CategoryDto categoryDto2 = catToCategoryDto(savecat);
+		// categoryDto2.setCatid(save.getCatid());
+		 
+		
 		return categoryDto2;
 	}
 
@@ -45,7 +53,17 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public String delete(long catid) {
-		Category cat = catRepo.findByCatid(catid).orElseThrow(()-> new ResourceNotFoundException("Category", "Category id", catid));
+		Category cat =new Category();
+		Optional<Category> cat1= catRepo.findByCatid(catid);
+		
+		if(cat1.isPresent())
+		{
+			cat =cat1.get();
+		}
+		else {
+			throw new ResourceNotFoundException("Category", "category id ", catid);
+		}
+		
 		
 		catRepo.delete(cat);
 		return "Category Deleted Successfully" + catid;
@@ -81,7 +99,11 @@ public class CategoryServiceImpl implements CategoryService{
 	
 	public Category catDtoToCategory(CategoryDto categoryDto)
 	{
+		
 		Category  cat = mapper.map(categoryDto, Category.class);
+		
+		
+	
 		return cat;
 	}
 	

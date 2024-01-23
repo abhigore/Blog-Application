@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +31,15 @@ import blog_Application.Service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
+
 	@Autowired
-	private UserRepo userRepo;
+	private  UserRepo userRepo;
 	
 	@Autowired
 	private ModelMapper mapper;
-	
-	@Autowired
-	private PasswordEncoder encoder;
-	
+
+
 	@Autowired
 	private RoleRepo roleRepo;
 	
@@ -47,28 +48,36 @@ public class UserServiceImpl implements UserService {
 	
 	Logger logger =LoggerFactory.getLogger(UserServiceImpl.class);
 
+	
 	@Override
 	public UserDto create(UserDto userDto) {
 
-	        User user =userDtOToUser(userDto);
-	        String pass = encoder.encode(user.getPassword());
-	        user.setPassword(pass);
-	        
-	       Role role= roleRepo.findByRoleid(AppConstants.ROLE_USER).get();
-	      
-	       user.getRoles().add(role);
-	       
-	       logger.info("the enter role  is = " + user.getRoles().toString());
-		User saveUser = userRepo.save(user);
-	//	long id =user.getId();
+		Role role =new Role();
+		PasswordEncoder encoder=new BCryptPasswordEncoder();
+		User user = userDtOToUser(userDto);
+		String pass = encoder.encode(user.getPassword());
+		user.setPassword(pass);
 		
-		logger.info("User Succeefully crated : "+ user.getId());
-		UserDto userDto2 = this.userToDto(saveUser);
-		Set<Role>roles =user.getRoles();
-		Set<RoleDto> roledtos =this.roleToRoleDtoSet(roles);
-	
+		logger.info("User password =" + pass);
+
+		Optional<Role> role1 = roleRepo.findByRoleid(AppConstants.ROLE_USER);
+		
+		if(role1.isPresent())
+		{
+			 role =role1.get();
+		}
+
+		user.getRoles().add(role);
+
+		logger.info("the enter role  is = " + user.getRoles().toString());
+		User saveUser = userRepo.save(user);
+		// long id =user.getId();
+
+		UserDto userDto2 = userToDto(saveUser);
+		Set<Role> roles = user.getRoles();
+		Set<RoleDto> roledtos = roleToRoleDtoSet(roles);
+
 		userDto2.setRoles(roledtos);
-		logger.info("the userid from userDto is = "+userDto2.getId());
 		return userDto2;
 	}
 
@@ -142,13 +151,13 @@ public class UserServiceImpl implements UserService {
 	
 public UserDto userToDto(User user) {
 		
-		UserDto userDto =mapper.map(user, UserDto.class);
-//	UserDto userDto =new UserDto();
-//		userDto.setId(user.getId());
-//		userDto.setName(user.getName());
-//		userDto.setEmail(user.getEmail());
-//		userDto.setPassword(user.getPassword());
-//		userDto.setAbout(user.getAbout());
+	//	UserDto userDto =mapper.map(user, UserDto.class);
+	UserDto userDto =new UserDto();
+		userDto.setId(user.getId());
+		userDto.setName(user.getName());
+		userDto.setEmail(user.getEmail());
+		userDto.setPassword(user.getPassword());
+		userDto.setAbout(user.getAbout());
 		
 	//	userDto.setRoles(this.roleToRoleDtoSet(user.getRoles()));
 		return userDto;

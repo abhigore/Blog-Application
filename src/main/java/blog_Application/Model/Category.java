@@ -37,6 +37,8 @@ public class Category {
 	private List<Post>posts =new ArrayList() ;
 
 
+
+
 	
 
 	

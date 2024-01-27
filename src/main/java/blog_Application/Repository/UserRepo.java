@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import blog_Application.Model.User;
 import blog_Application.Paylaod.UserDto;
 
-
+@Repository
 public interface UserRepo extends JpaRepository<User, Long>{
 
 	public Optional<User> findById(long id);

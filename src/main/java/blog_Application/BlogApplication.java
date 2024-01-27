@@ -3,12 +3,15 @@ package blog_Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import blog_Application.Model.Role;
 import blog_Application.Repository.RoleRepo;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"blog_Application.*","blog_Application.Repository","blog_Application.ServiceImpl" })
 public class BlogApplication {
 
 	@Autowired

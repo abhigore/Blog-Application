@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import blog_Application.Exception.ResourceNotFoundException;
@@ -28,10 +29,12 @@ public class RoleServiceImpl implements RoleService{
 	
 
 	@Autowired
+	@Lazy
 	private  RoleRepo roleRepo;
 
 	
 	@Autowired
+	@Lazy
 	private UserRepo userRepo;
 	
 	

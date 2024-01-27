@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,7 +73,9 @@ public class UserController {
 			logger.info("User is not created");
 		}
 		logger.info("user id from controller is =  " +userDto1.getId());
-		return new ResponseEntity<UserDto>(userDto1,HttpStatus.CREATED);
+		return ResponseEntity.ok()
+				.contentType(MediaType.APPLICATION_JSON)
+				.body( userDto1);
 	}
 	
 	@GetMapping("/user/{id}")
@@ -90,7 +93,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping("/users")
+	@GetMapping(value = "/users" ,produces ="application/json")
 	public ResponseEntity< List<User>>getAllUer(
 			@RequestParam(name ="pageNumber" ,defaultValue = "0" ,required = false) int pageNumber,
 			@RequestParam(name="pageSize" ,defaultValue = "2",required = false) int pageSize)

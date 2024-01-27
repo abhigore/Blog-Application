@@ -1,5 +1,6 @@
 package blog_Application.ServiceImpl;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,6 +17,8 @@ import org.modelmapper.TypeMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -41,15 +44,18 @@ import jakarta.persistence.PostRemove;
 public class PostServiceImpl implements PostService{
 
 	@Autowired
+	@Lazy
 	private PostRepo postRepo;
 	
 	
 	private ModelMapper mapper =new ModelMapper();
 	
 	@Autowired
+	@Lazy
 	private UserRepo userRepo;
 	
 	@Autowired
+	@Lazy
 	private CategoryRepo categoryRepo;
 	
 	
@@ -227,7 +233,7 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public InputStream getResource(String path, String filename) throws FileNotFoundException {
-		 String image = path+postRepo.getByImage(filename);
+		 String image = path+File.separator+postRepo.getByImage(filename);
 		 logger.info("the image path is : " +image);
 		 InputStream is = new FileInputStream(image);
 		 return is;

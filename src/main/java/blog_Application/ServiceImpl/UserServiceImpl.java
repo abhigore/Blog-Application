@@ -12,6 +12,7 @@ import org.modelmapper.TypeMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Autowired
+	@Lazy
 	private  UserRepo userRepo;
 	
 	@Autowired
@@ -41,9 +43,11 @@ public class UserServiceImpl implements UserService {
 
 
 	@Autowired
+	@Lazy
 	private RoleRepo roleRepo;
 	
 	@Autowired
+	@Lazy
 	private RoleServiceImpl roleServiceImpl;
 	
 	Logger logger =LoggerFactory.getLogger(UserServiceImpl.class);

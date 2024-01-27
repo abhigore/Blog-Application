@@ -29,18 +29,18 @@ import jakarta.validation.Valid;
 public class CategoryController {
 
 	@Autowired
-	private CategoryServiceImpl serviceImpl;
+	private CategoryServiceImpl categoryServiceImpl;
 	
 	@PostMapping
 	public ResponseEntity<CategoryDto>create(@Valid @RequestBody CategoryDto categoryDto)
 	{
-		return new ResponseEntity<CategoryDto>(serviceImpl.create(categoryDto),HttpStatus.CREATED);
+		return new ResponseEntity<CategoryDto>(categoryServiceImpl.create(categoryDto),HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/{catid}")
 	public ResponseEntity<CategoryDto>getOne(@PathVariable long catid )
 	{
-		return new ResponseEntity<CategoryDto>(serviceImpl.getOne(catid),HttpStatus.OK);
+		return new ResponseEntity<CategoryDto>(categoryServiceImpl.getOne(catid),HttpStatus.OK);
 	}
 	
 	@GetMapping
@@ -48,19 +48,19 @@ public class CategoryController {
 			@RequestParam(name ="pageNumber" ,defaultValue = "0" ,required = false) int pageNumber,
 			@RequestParam(name="pageSize" ,defaultValue = "2",required = false) int pageSize)
 	{
-		return new ResponseEntity<>(serviceImpl.getAll(pageNumber,pageSize),HttpStatus.OK);
+		return new ResponseEntity<>(categoryServiceImpl.getAll(pageNumber,pageSize),HttpStatus.OK);
 	}
 	
 	@PutMapping("/{catid}")
 	public ResponseEntity<CategoryDto>update(@RequestBody CategoryDto categoryDto ,@PathVariable long catid)
 	{
-		return new ResponseEntity<CategoryDto>(serviceImpl.update(categoryDto,catid),HttpStatus.OK);
+		return new ResponseEntity<CategoryDto>(categoryServiceImpl.update(categoryDto,catid),HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{catid}")
 	public ResponseEntity<String> delete(@PathVariable long catid)
 	{
-		return new ResponseEntity<String>(serviceImpl.delete(catid),HttpStatus.OK);
+		return new ResponseEntity<String>(categoryServiceImpl.delete(catid),HttpStatus.OK);
 	}
 	
 }

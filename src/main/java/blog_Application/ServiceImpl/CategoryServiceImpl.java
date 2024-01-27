@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,23 +22,19 @@ import blog_Application.Service.CategoryService;
 @Service
 public class CategoryServiceImpl implements CategoryService{
 	
-	
-	private CategoryRepo catRepo;
+	@Autowired
+	@Lazy
+	private CategoryRepo categoryRepo;
 	
 	private ModelMapper mapper =new ModelMapper();
 	
-	@Autowired
-	public CategoryServiceImpl( CategoryRepo catRepo) {
-	   this.catRepo =catRepo;
-	   
-	}
 
 	@Override
 	public CategoryDto create(CategoryDto categoryDto) {
 		
 		Category category =catDtoToCategory(categoryDto);
 		
-		Category savecat = catRepo.save(category);
+		Category savecat = categoryRepo.save(category);
 		 CategoryDto categoryDto2 = catToCategoryDto(savecat);
 		// categoryDto2.setCatid(save.getCatid());
 		 
@@ -46,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public CategoryDto getOne(long catid) {
-		Category cat = catRepo.findByCatid(catid).orElseThrow(()-> new ResourceNotFoundException("Category", "Category id", catid));
+		Category cat = categoryRepo.findByCatid(catid).orElseThrow(()-> new ResourceNotFoundException("Category", "Category id", catid));
 		CategoryDto categoryDto = catToCategoryDto(cat);
 		return categoryDto;
 	}
@@ -54,7 +52,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public String delete(long catid) {
 		Category cat =new Category();
-		Optional<Category> cat1= catRepo.findByCatid(catid);
+		Optional<Category> cat1= categoryRepo.findByCatid(catid);
 		
 		if(cat1.isPresent())
 		{
@@ -65,13 +63,13 @@ public class CategoryServiceImpl implements CategoryService{
 		}
 		
 		
-		catRepo.delete(cat);
+		categoryRepo.delete(cat);
 		return "Category Deleted Successfully" + catid;
 	}
 
 	@Override
 	public CategoryDto update(CategoryDto categoryDto ,long catid) {
-		Category category = catRepo.findByCatid(catid).orElseThrow(()->new ResourceNotFoundException("Category", "Category Id", catid));
+		Category category = categoryRepo.findByCatid(catid).orElseThrow(()->new ResourceNotFoundException("Category", "Category Id", catid));
 		if(categoryDto.getCatname()!=null)
 		{
 			category.setCatname(categoryDto.getCatname());
@@ -81,7 +79,7 @@ public class CategoryServiceImpl implements CategoryService{
 			category.setCatabout(categoryDto.getCatabout());
 		}
 		
-		catRepo.saveAndFlush(category);
+		categoryRepo.saveAndFlush(category);
 		CategoryDto categoryDto1 = catToCategoryDto(category);
 		
 		
@@ -91,7 +89,7 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public List<Category> getAll(int pageNumber ,int pageSize) {
 		Pageable r =PageRequest.of(pageNumber, pageSize);
-		 Page<Category> categoryPerPage = catRepo.findAll(r);	
+		 Page<Category> categoryPerPage = categoryRepo.findAll(r);	
 		 List<Category> list =categoryPerPage.getContent();
 		
 		return list;

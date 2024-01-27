@@ -7,11 +7,13 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import blog_Application.Exception.ResourceNotFoundException;
 import blog_Application.Model.Comment;
@@ -26,15 +28,19 @@ import blog_Application.Service.CommentService;
 
 
 @Service
+
 public class CommentServiceImpl  implements CommentService{
 
 	@Autowired
+	@Lazy
 	private CommentRepo commentRepo;
 
 	@Autowired
+	@Lazy
 	private UserRepo userRepo;
 	
 	@Autowired
+	@Lazy
 	private PostRepo postRepo;
 	
 	

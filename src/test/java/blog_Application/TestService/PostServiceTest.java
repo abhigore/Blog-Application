@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +40,7 @@ import blog_Application.Repository.UserRepo;
 import blog_Application.ServiceImpl.PostServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
-public class PostServiceTest {
+public  class PostServiceTest {
 
 	@Mock
 	private PostRepo postRepo;

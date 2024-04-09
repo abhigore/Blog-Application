@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import blog_Application.Exception.ResourceNotFoundException;
 import blog_Application.Model.User;
@@ -16,14 +17,13 @@ import blog_Application.Repository.UserRepo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-@Component
-@NoArgsConstructor
-@AllArgsConstructor
+@Service
 public class CustomUserDetailService implements UserDetailsService{
 
 	@Autowired
 	@Lazy
 	private UserRepo userRepo;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		 

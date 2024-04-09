@@ -46,6 +46,8 @@ public class JwtController {
 		String token = null;
 
 		UserDetails user = customUserDetailService.loadUserByUsername(authRequest.getUsername());
+		
+		logger.info("enter into the Jwt tokwn creation class");
 
 		try {
 			token = helper.generateToken(user);

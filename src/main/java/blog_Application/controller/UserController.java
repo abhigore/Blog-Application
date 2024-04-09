@@ -102,10 +102,12 @@ public class UserController {
 		
 	}
 	
-	@PutMapping("/user/{id}")
+	@PutMapping(value="/user/{id}")
 	public ResponseEntity<UserDto> update(@RequestBody UserDto userDto ,@PathVariable  long id)
 	{
-		return new ResponseEntity<UserDto>(userService.Update(userDto, id),HttpStatus.OK);
+		return ResponseEntity.ok()
+				.contentType(MediaType.APPLICATION_JSON)
+				.body(userService.Update(userDto, id));
 	}
 	
 	@DeleteMapping("/user/{id}")

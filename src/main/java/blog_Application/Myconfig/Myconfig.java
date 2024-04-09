@@ -12,7 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import blog_Application.Repository.CategoryRepo;
+import blog_Application.Repository.UserRepo;
 import blog_Application.ServiceImpl.CategoryServiceImpl;
+import blog_Application.ServiceImpl.UserServiceImpl;
 
 @Configuration
 public class Myconfig {
@@ -22,6 +24,7 @@ public class Myconfig {
 	{
 		return new ModelMapper();
 	}
+	
 	
 
 }
